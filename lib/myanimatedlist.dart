@@ -11,7 +11,7 @@ class _MyAnimatedListState extends State<MyAnimatedList> {
   final GlobalKey<AnimatedListState> _key = GlobalKey();
 
   void _addItem() {
-    _items.insert(0, 'اغتنم حياتك ${_items.length + 1}');
+    _items.insert(0, '❤️ اغتنم حياتك ${_items.length + 1} ');
     _key.currentState!.insertItem(
       0,
       duration: const Duration(seconds: 1),
@@ -24,10 +24,14 @@ class _MyAnimatedListState extends State<MyAnimatedList> {
       (_, animation) {
         return SizeTransition(
           sizeFactor: animation,
-          child: const Card(
-            margin: EdgeInsets.all(12),
-            color: Colors.redAccent,
-            child: ListTile(
+          child: Container(
+            height: 170,
+            decoration: BoxDecoration(
+              color: Colors.redAccent,
+              borderRadius: BorderRadius.circular(12),
+            ),
+            margin: const EdgeInsets.all(10),
+            child: const ListTile(
               title: Text(
                 'Deleted',
                 style: TextStyle(fontSize: 20),
@@ -64,16 +68,26 @@ class _MyAnimatedListState extends State<MyAnimatedList> {
                 return SizeTransition(
                   key: UniqueKey(),
                   sizeFactor: animation,
-                  child: Card(
-                    margin: const EdgeInsets.all(12),
-                    color: Colors.teal,
+                  child: Container(
+                    height: 170,
+                    margin: const EdgeInsets.symmetric(vertical: 10),
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(12),
+                      image: const DecorationImage(
+                          image: AssetImage(
+                            'assets/rahmah.png',
+                          ),
+                          fit: BoxFit.cover),
+                    ),
                     child: ListTile(
-                      title: Text(
-                        _items[index],
-                        style: const TextStyle(
-                            fontSize: 18,
-                            color: Colors.white,
-                            fontWeight: FontWeight.bold),
+                      title: Center(
+                        child: Text(
+                          _items[index],
+                          style: const TextStyle(
+                              fontSize: 18,
+                              color: Colors.white,
+                              fontWeight: FontWeight.bold),
+                        ),
                       ),
                       trailing: IconButton(
                         onPressed: () {
